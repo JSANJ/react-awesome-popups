@@ -34,7 +34,12 @@ class Popup extends React.Component {
 
     render() {
         return (
-            <div className={this.props.type ? "react-awesome-popups-"+this.props.type : "react-awesome-popups-custom"} style={this.props.style}>
+            <div
+                className={
+                    `react-awesome-popups ${this.props.type ? "react-awesome-popups-"+ this.props.type : "react-awesome-popups-custom"}`
+                }
+                style={this.props.style}
+            >
                 <div className={this.props.type ?
                     "react-awesome-popups-"+this.props.type+"-text"
                     : "react-awesome-popups-custom-text"}>

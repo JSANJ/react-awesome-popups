@@ -1,10 +1,16 @@
-.react-awesome-popups-success {
+.react-awesome-popups {
     display: table;
-    /*border-radius: 0.5em;*/
-    border: 0 solid #10DE0F;
+    pointer-events: all;
+    border: solid;
+}
+
+.react-awesome-popups-success {
+    border-color: #10DE0F;
+    border-width: 0;
     border-left-width: 3px;
     margin-right: 3px;
     background-color: #C6FDBE;
+
 }
 .react-awesome-popups-success-text {
     color: #04B403;
