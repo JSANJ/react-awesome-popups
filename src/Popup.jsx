@@ -14,18 +14,17 @@ const defaultProps = {
 class Popup extends React.Component {
     constructor(props) {
         super(props);
+        this.props.erasekey && this.props.options && this.props.options.duration > 0 && this.queueDelete(this.props.options.duration,this.props.erasekey);
+
     }
 
-    componentDidMount(){
-        console.log("popup mounted");
-        this.queueDelete(1000);
-    }
+    // componentWillMount(){
+    // }
 
-    queueDelete(ms){
+    async queueDelete(ms,key){
         setTimeout(
             ()=>{
-                console.log("unmount:",this);
-                this.props.unmount && this.props.unmount(this);
+                this.props.unmountkey && this.props.unmountkey(key);
             },
             ms
         )

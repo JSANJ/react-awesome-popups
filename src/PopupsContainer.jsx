@@ -23,27 +23,44 @@ const defaultProps = {
     }
 }
 
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+
 class PopupsContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            children: props.children,
-        }
+        this.children = [];
+        props.children !== undefined && props.children.type !== [].type && this.children.push(props.children);
+
+        this.unmountKey = this.unmountKey.bind(this);
     }
 
     popup(component, options){
-        this.setState({children: [...this.state.children,component]})
+        const id = makeid(20);
+        this.children.push(<component.type {...component.props} options={options} erasekey={id}/>)
+        this.forceUpdate();
     }
 
-    unmountChild(child){
-        console.log("child:",child);
+    unmountKey(erasekey){
+        this.children = this.children.filter((item,i) => {
+            return erasekey !== item.props.erasekey
+        })
+        this.forceUpdate();
     }
 
     render() {
         return (
             <div className={"react-awesome-popups-container"} {...this.props}>
-                {this.state.children.map((component,key)=>{
-                    return (<component.type {...component.props} key={key} />)
+                {this.children.map((component,key)=>{
+                    return (<component.type {...component.props} key={key} unmount={this.unmountChild} unmountkey={this.unmountKey} />)
                 })}
             </div>
         );
