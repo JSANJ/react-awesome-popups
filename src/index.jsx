@@ -1,3 +1,3 @@
-import {Popup} from './Popup.jsx';
-
-export {Popup};
+import { Popup } from './Popup.jsx';
+import { PopupsContainer } from './PopupsContainer.jsx';
+export { Popup, PopupsContainer };

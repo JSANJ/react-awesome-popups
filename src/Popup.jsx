@@ -1,26 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './style.css';
+import './popup-styles.css';
 
-//TODO
 const propTypes = {
-    label: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    styles: PropTypes.object
+    unmount: PropTypes.func,
+    children: PropTypes.any,
+    type: PropTypes.string
 }
 
-//TODO
 const defaultProps = {
-    styles: {
-        label: {
-            fontFamily: 'Comic Sans MS',
-            color: 'green'
-        },
-        input: {
-            background: '#ddd',
-            border: '1px solid red'
-        }
-    }
 }
 
 class Popup extends React.Component {
@@ -28,9 +16,24 @@ class Popup extends React.Component {
         super(props);
     }
 
+    componentDidMount(){
+        console.log("popup mounted");
+        this.queueDelete(1000);
+    }
+
+    queueDelete(ms){
+        setTimeout(
+            ()=>{
+                console.log("unmount:",this);
+                this.props.unmount && this.props.unmount(this);
+            },
+            ms
+        )
+    }
+
     render() {
         return (
-            <div className={this.props.type ? "react-awesome-popups-"+this.props.type : "react-awesome-popups-custom"}>
+            <div className={this.props.type ? "react-awesome-popups-"+this.props.type : "react-awesome-popups-custom"} {...this.props}>
                 <div className={this.props.type ?
                     "react-awesome-popups-"+this.props.type+"-text"
                     : "react-awesome-popups-custom-text"}>
@@ -45,4 +48,4 @@ Popup.propTypes = propTypes;
 Popup.defaultProps = defaultProps;
 
 
-export {Popup};
+export { Popup };

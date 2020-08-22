@@ -1,0 +1,13 @@
+.react-awesome-popups-container {
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.react-awesome-popups-container > * {
+    margin-top: 0.5em;
+}
+
+.react-awesome-popups-container > *:first-child {
+    margin-top: 0px;
+}
