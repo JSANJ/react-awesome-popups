@@ -4,6 +4,8 @@ import './popup-styles.css';
 
 const propTypes = {
     unmount: PropTypes.func,
+    unmountkey: PropTypes.string,
+    style: PropTypes.object,
     children: PropTypes.any,
     type: PropTypes.string
 }
@@ -32,7 +34,7 @@ class Popup extends React.Component {
 
     render() {
         return (
-            <div className={this.props.type ? "react-awesome-popups-"+this.props.type : "react-awesome-popups-custom"} {...this.props}>
+            <div className={this.props.type ? "react-awesome-popups-"+this.props.type : "react-awesome-popups-custom"} style={this.props.style}>
                 <div className={this.props.type ?
                     "react-awesome-popups-"+this.props.type+"-text"
                     : "react-awesome-popups-custom-text"}>
