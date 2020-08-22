@@ -1,0 +1,12 @@
+.react-awesome-popups-success {
+    display: table;
+//border-radius: 0.5em;
+    border: 0 solid #10DE0F;
+    border-left-width: 3px;
+    background-color: #C6FDBE;
+    padding: 0.5em;
+}
+.react-awesome-popups-success-text {
+    color: #04B403;
+    padding: 0;
+}
