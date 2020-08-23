@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './popup-styles.css';
-
+import CloseButton from './assets/close.svg';
 const propTypes = {
     unmount: PropTypes.func,
     unmountkey: PropTypes.string,
+    closeButton: PropTypes.object,
     style: PropTypes.object,
     children: PropTypes.any,
     type: PropTypes.string
@@ -13,15 +14,18 @@ const propTypes = {
 const defaultProps = {
 }
 
+//TODO create BasePopupComponent
+//TODO add close button
 class Popup extends React.Component {
     constructor(props) {
         super(props);
-        this.props.erasekey && this.props.options && this.props.options.duration > 0 && this.queueDelete(this.props.options.duration,this.props.erasekey);
-
+        this.props.erasekey && this.props.options && this.props.options.duration > 0 && this.queueDelete(
+            this.props.options.duration,
+            this.props.erasekey
+        );
+        this.queueDelete = this.queueDelete.bind(this);
+        //TODO Set fade-in/fade-out animation
     }
-
-    // componentWillMount(){
-    // }
 
     async queueDelete(ms,key){
         setTimeout(
@@ -40,10 +44,23 @@ class Popup extends React.Component {
                 }
                 style={this.props.style}
             >
-                <div className={this.props.type ?
-                    "react-awesome-popups-"+this.props.type+"-text"
-                    : "react-awesome-popups-custom-text"}>
-                    {this.props.children}
+                <div className={"react-awesome-popups-popup-inner-container"}>
+                    <div className={`react-awesome-popups-popup-content ${this.props.type ?
+                        "react-awesome-popups-"+this.props.type+"-content"
+                        : "react-awesome-popups-custom-content"}`}>
+                        {this.props.children}
+
+                    </div>
+                    {
+                        this.props.closeButton ?
+                            this.props.closeButton :
+                            <img
+                                className={"react-awesome-popups-popup-close-button"}
+                                src={CloseButton}
+                                alt="Close Button"
+                                onClick={()=>{this.queueDelete(0,this.props.erasekey)}}
+                            />
+                    }
                 </div>
             </div>
         );
@@ -52,6 +69,8 @@ class Popup extends React.Component {
 
 Popup.propTypes = propTypes;
 Popup.defaultProps = defaultProps;
+
+//Close icon from https://www.flaticon.com/authors/hirschwolf
 
 
 export { Popup };

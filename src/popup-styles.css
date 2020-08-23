@@ -12,8 +12,24 @@
     background-color: #C6FDBE;
 
 }
-.react-awesome-popups-success-text {
-    color: #04B403;
+.react-awesome-popups-popup-content {
     text-align: left;
+}
+.react-awesome-popups-success-content {
+    color: #04B403;
+
+}
+.react-awesome-popups-popup-inner-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     padding: 0.5em;
+}
+
+.react-awesome-popups-popup-close-button {
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    max-height: 0.8em;
 }
