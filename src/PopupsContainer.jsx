@@ -57,22 +57,17 @@ class PopupsContainer extends React.Component {
 
     popup(component, options){
         const id = makeid(20);
+        console.log("PROPS:",component.props);
         this.children.push(<component.type
-            {...component.props}
-            options={options}
+            children={component.props.children}
+            style={component.props.style}
+            type={component.props.type}
+            options={{...component.props.options, ...options}}
             erasekey={id}
             key={id}
             unmountkey={this.unmountKey}
         />)
-        // this.children.push(<Popup className={component.props.className} options={options} erasekey={id} key={id}>
-        //     {component.props.children}
-        // </Popup>);
-        // const el = React.cloneElement(component,{
-        //     options: options,
-        //     erasekey: id,
-        //     key: id,
-        // })
-        // this.children.push(el);
+
         this.forceUpdate();
     }
 
