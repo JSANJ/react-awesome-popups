@@ -26,9 +26,10 @@
     background-color: #C6FDBE;
 }
 .react-awesome-popups-popup-content {
+    padding: 0.5em;
     text-align: left;
 }
-.react-awesome-popups-success-content {
+.react-awesome-popups-popup-content-success {
     color: #04B403;
 
 }
@@ -37,19 +38,21 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5em;
+    /*padding: 0.5em;*/
 }
-
-.react-awesome-popups-success-close-button {
+.react-awesome-popups-close-button {
     cursor: pointer;
     width: auto;
     height: auto;
     max-height: 0.8em;
     min-width: 0.8em;
-    margin-left:0.5em;
+    /*margin-left:0.5em;*/
+    padding:0.5em;
+}
+.react-awesome-popups-close-button-success {
     fill: #04B403;
 }
-.react-awesome-popups-success-close-button:hover {
+.react-awesome-popups-close-button-success:hover {
     transform: rotate(360deg);
     transition: all 0.5s ease-in-out;
 }

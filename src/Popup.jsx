@@ -31,7 +31,7 @@ const fadeAnimStates = {
         style: {
             opacity: 1,
         },
-        duration: 4000,
+        duration: 12000,
         nextStateKey: "out",
     },
     out: {
@@ -62,8 +62,8 @@ const clipAnimStates = {
         style: {
             clipPath: 'inset(0 0 0 0)',
         },
-        duration: 4000,
-        nextStateKey: "out",
+        duration: 12000,
+        // nextStateKey: "out",
     },
     out: {
         style: {
@@ -86,6 +86,8 @@ class Popup extends React.Component {
         this.startDelete = this.startDelete.bind(this);
         this.doDelete = this.doDelete.bind(this);
 
+        //TODO set animStates from API (props)
+
         this.state = {
             animStates: clipAnimStates,
             animState: clipAnimStates["start"],
@@ -99,6 +101,7 @@ class Popup extends React.Component {
         this.queueState(this.state.animState, this.state.animStates);
     }
 
+    //TODO fix animation transition durations
     async queueState(newState, animStates){
         console.log("new state:", newState);
         this.setState({animState: newState},()=>{
@@ -139,7 +142,7 @@ class Popup extends React.Component {
         return (
             <div
                 className={
-                    `react-awesome-popups ${this.props.type ? "react-awesome-popups-"+ this.props.type : "react-awesome-popups-custom"}`
+                    `react-awesome-popups react-awesome-popups-${this.props.type ? this.props.type : "custom"}`
                 }
                 style={{
                     ...(this.state.animState ? {
@@ -150,9 +153,7 @@ class Popup extends React.Component {
                 }}
             >
                 <div className={"react-awesome-popups-popup-inner-container"}>
-                    <div className={`react-awesome-popups-popup-content ${this.props.type ?
-                        "react-awesome-popups-"+this.props.type+"-content"
-                        : "react-awesome-popups-custom-content"}`}>
+                    <div className={`react-awesome-popups-popup-content react-awesome-popups-popup-content-${this.props.type ? this.props.type : "custom"}`}>
                         {this.props.children}
 
                     </div>
@@ -160,7 +161,7 @@ class Popup extends React.Component {
                         this.props.closeButton ?
                             this.props.closeButton :
                             <CloseButton
-                                className={`react-awesome-popups-${this.props.type ? this.props.type : "custom"}-close-button`}
+                                className={`react-awesome-popups-close-button react-awesome-popups-close-button-${this.props.type ? this.props.type : "custom"}`}
                                 // src={CloseButton}
                                 alt="Close Button"
                                 onClick={()=>{this.startDelete()}}
