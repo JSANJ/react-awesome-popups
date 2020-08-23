@@ -12,6 +12,67 @@ const propTypes = {
     type: PropTypes.string
 }
 
+const fadeAnimStates = {
+    start: {
+        style: {
+            opacity: 0,
+        },
+        duration: 0, //How long this will stay in this state
+        nextStateKey: "in",
+    },
+    in: {
+        style: {
+            opacity: 1,
+        },
+        duration: 2000,
+        nextStateKey: "hold",
+    },
+    hold: {
+        style: {
+            opacity: 1,
+        },
+        duration: 4000,
+        nextStateKey: "out",
+    },
+    out: {
+        style: {
+            opacity: 0,
+        },
+        duration: 2000,
+        unmountOnComplete: true,
+    },
+}
+
+const clipAnimStates = {
+    start: {
+        style: {
+            clipPath: 'inset(0 100% 0 0)',
+        },
+        duration: 0,
+        nextStateKey: "in",
+    },
+    in: {
+        style: {
+            clipPath: 'inset(0 0 0 0)',
+        },
+        duration: 500,
+        nextStateKey: "hold",
+    },
+    hold: {
+        style: {
+            clipPath: 'inset(0 0 0 0)',
+        },
+        duration: 4000,
+        nextStateKey: "out",
+    },
+    out: {
+        style: {
+            clipPath: 'inset(0 100% 0 0)',
+        },
+        duration: 500,
+        unmountOnComplete: true,
+    }
+}
 const defaultProps = {
 }
 
@@ -24,66 +85,56 @@ class Popup extends React.Component {
         this.queueDelete = this.queueDelete.bind(this);
         this.startDelete = this.startDelete.bind(this);
         this.doDelete = this.doDelete.bind(this);
-        this.startAppear = this.startAppear.bind(this);
 
         this.state = {
-            fadeInDuration: props.options.fadeInDuration ? props.options.fadeInDuration : 0,
-            fadeOutDuration: props.options.fadeOutDuration ? props.options.fadeOutDuration : 0,
-            fadestate: "start",
+            animStates: clipAnimStates,
+            animState: clipAnimStates["start"],
         }
-        props.erasekey && props.options && props.options.duration > 0 && this.queueDelete(
-            props.options.fadeInDuration + props.options.duration,
-            props.erasekey
-        );
+
+        this.animThread = null;
 
         //TODO Set fade-in/fade-out animation
     }
     componentDidMount() {
-        this.setState({fadestate: "start"},
-            () => {
-            setTimeout(()=>{
-                const fadeInDuration = this.props.options.fadeInDuration ? this.props.options.fadeInDuration : 0;
-                this.startAppear(fadeInDuration);
-            },0)
-
-        })
+        this.queueState(this.state.animState, this.state.animStates);
     }
 
-    async startAppear(ms){
-        console.log("appearing:",ms)
-        this.setState({fadestate:"fadingIn"},()=>{
-            console.log("setting hold:", ms);
-            setTimeout(()=>{
-                this.setState({fadestate:"hold"})
-            },
-                ms
-            )
+    async queueState(newState, animStates){
+        console.log("new state:", newState);
+        this.setState({animState: newState},()=>{
+            const duration = newState.duration;
+            if (newState.unmountOnComplete){
+                this.queueDelete(duration, this.props.erasekey)
+                return;
+            }
+            if (newState.nextStateKey){
+                const nextState = animStates[newState.nextStateKey];
+                console.log("next state:",nextState);
+                this.animThread = setTimeout(()=>{
+                    this.queueState(nextState, animStates)
+                }, duration)
+            }
         })
+    }
+    startDelete(){
+        if (this.animThread){
+            //Cancel current anim
+            clearTimeout(this.animThread);
+        }
+        this.queueState(this.state.animStates["out"],this.state.animStates);
     }
 
     async queueDelete(ms,key){
         setTimeout(
-            ()=>{this.startDelete(key)},
+            ()=>{this.doDelete(key)},
             ms
         )
-    }
-    startDelete(key){
-
-        this.setState({fadestate:"fadingOut"},
-            ()=>{
-                setTimeout(()=>{
-                        this.doDelete(key);
-                    },
-                    this.state.fadeOutDuration)
-            });
-
     }
     doDelete(key){
         this.props.unmountkey && this.props.unmountkey(key);
     }
 
 
-    //TODO fix style transition fadeOutDuration only on disabled state https://stackoverflow.com/questions/57317943/custom-style-for-disabled-button-applies-to-regular-button-also
     render() {
         return (
             <div
@@ -91,13 +142,12 @@ class Popup extends React.Component {
                     `react-awesome-popups ${this.props.type ? "react-awesome-popups-"+ this.props.type : "react-awesome-popups-custom"}`
                 }
                 style={{
-                    ...(this.state.fadestate === "start" ? {transition: `all ${this.state.fadeInDuration}ms ease-in-out`} : {}),
-                    ...(this.state.fadestate === "fadingIn" ? {transition: `all ${this.state.fadeInDuration}ms ease-in-out`} : {}),
-                    ...(this.state.fadestate === "hold" ? {transition: `all ${this.state.fadeInDuration}ms ease-in-out`} : {}),
-                    ...(this.state.fadestate === "fadingOut" ? {transition: `all ${this.state.fadeOutDuration}ms ease-in-out`} : {}),
+                    ...(this.state.animState ? {
+                        ...this.state.animState.style,
+                        transition: `all ${this.state.animState.duration}ms ease`
+                    } : {}),
                     ...this.props.style
                 }}
-                fadestate={this.state.fadestate}
             >
                 <div className={"react-awesome-popups-popup-inner-container"}>
                     <div className={`react-awesome-popups-popup-content ${this.props.type ?
@@ -113,7 +163,7 @@ class Popup extends React.Component {
                                 className={`react-awesome-popups-${this.props.type ? this.props.type : "custom"}-close-button`}
                                 // src={CloseButton}
                                 alt="Close Button"
-                                onClick={()=>{this.queueDelete(0,this.props.erasekey)}}
+                                onClick={()=>{this.startDelete()}}
                             />
                     }
                 </div>
