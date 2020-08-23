@@ -32,4 +32,6 @@
     width: auto;
     height: auto;
     max-height: 0.8em;
+    min-width: 0.8em;
+    padding-left:0.5em;
 }

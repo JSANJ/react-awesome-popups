@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './popups-container-style.css';
+import {Popup} from "./Popup.jsx";
 
 //TODO
 const propTypes = {
@@ -37,15 +38,41 @@ function makeid(length) {
 class PopupsContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.children = [];
-        props.children !== undefined && props.children.type !== [].type && this.children.push(props.children);
-
+        this.popup = this.popup.bind(this);
         this.unmountKey = this.unmountKey.bind(this);
+        this.children = [];// 0 items
+        if (props.children !== undefined) {
+            if (props.children.type !== [].type){ // 1 item
+                this.popup(props.children)
+            }
+            else { // 2+ items
+                this.children = [];
+                for (let i = 0; i< props.children.length; ++i){
+                    this.popup(props.children[i])
+                }
+            }
+        }
+
     }
 
     popup(component, options){
         const id = makeid(20);
-        this.children.push(<component.type {...component.props} options={options} erasekey={id}/>)
+        this.children.push(<component.type
+            {...component.props}
+            options={options}
+            erasekey={id}
+            key={id}
+            unmountkey={this.unmountKey}
+        />)
+        // this.children.push(<Popup className={component.props.className} options={options} erasekey={id} key={id}>
+        //     {component.props.children}
+        // </Popup>);
+        // const el = React.cloneElement(component,{
+        //     options: options,
+        //     erasekey: id,
+        //     key: id,
+        // })
+        // this.children.push(el);
         this.forceUpdate();
     }
 
@@ -57,11 +84,11 @@ class PopupsContainer extends React.Component {
     }
 
     render() {
+        console.log("children:",this.children)
         return (
-            <div className={"react-awesome-popups-container"} {...this.props}>
-                {this.children.map((component,key)=>{
-                    return (<component.type {...component.props} key={key} unmount={this.unmountChild} unmountkey={this.unmountKey} />)
-                })}
+                <div className={"react-awesome-popups-container"}>
+                {this.children}
+                    {/*{this.children}*/}
             </div>
         );
     }
