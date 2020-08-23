@@ -27,11 +27,12 @@
     padding: 0.5em;
 }
 
-.react-awesome-popups-popup-close-button {
+.react-awesome-popups-success-close-button {
     cursor: pointer;
     width: auto;
     height: auto;
     max-height: 0.8em;
     min-width: 0.8em;
     padding-left:0.5em;
+    fill: #04B403;
 }

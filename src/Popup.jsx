@@ -54,9 +54,9 @@ class Popup extends React.Component {
                     {
                         this.props.closeButton ?
                             this.props.closeButton :
-                            <img
-                                className={"react-awesome-popups-popup-close-button"}
-                                src={CloseButton}
+                            <CloseButton
+                                className={`react-awesome-popups-${this.props.type ? this.props.type : "custom"}-close-button`}
+                                // src={CloseButton}
                                 alt="Close Button"
                                 onClick={()=>{this.queueDelete(0,this.props.erasekey)}}
                             />
