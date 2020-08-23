@@ -33,6 +33,10 @@
     height: auto;
     max-height: 0.8em;
     min-width: 0.8em;
-    padding-left:0.5em;
+    margin-left:0.5em;
     fill: #04B403;
+}
+.react-awesome-popups-success-close-button:hover {
+    transform: rotate(360deg);
+    transition: all 0.5s ease-in-out;
 }
