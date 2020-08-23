@@ -3,21 +3,6 @@
     pointer-events: all;
     border: solid;
 }
-/*.react-awesome-popups[fadestate="start"] {*/
-/*    opacity: 1;*/
-/*    clip-path: inset(0 100% 0 0);*/
-/*}*/
-/*.react-awesome-popups[fadestate="fadingIn"] {*/
-/*    opacity: 1;*/
-/*    clip-path: inset(0 0 0 0);*/
-/*}*/
-/*.react-awesome-popups[fadestate="hold"] {*/
-/*    opacity: 1;*/
-/*}*/
-/*.react-awesome-popups[fadestate="fadingOut"] {*/
-/*    opacity: 0;*/
-/*}*/
-
 .react-awesome-popups-success {
     border-color: #10DE0F;
     border-width: 0;

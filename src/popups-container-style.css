@@ -5,9 +5,9 @@
 }
 
 .react-awesome-popups-container > * {
-    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
-.react-awesome-popups-container > *:first-child {
-    margin-top: 0px;
+.react-awesome-popups-container > *:last-child {
+    margin-bottom: 0px;
 }

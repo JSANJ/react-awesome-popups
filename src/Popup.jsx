@@ -147,7 +147,7 @@ class Popup extends React.Component {
                 style={{
                     ...(this.state.animState ? {
                         ...this.state.animState.style,
-                        transition: `all ${this.state.animState.duration}ms ease`
+                        transition: `all ${this.state.animState.duration}ms ease`,
                     } : {}),
                     ...this.props.style
                 }}
