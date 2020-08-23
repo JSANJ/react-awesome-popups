@@ -57,7 +57,6 @@ class PopupsContainer extends React.Component {
 
     popup(component, options){
         const id = makeid(20);
-        console.log("PROPS:",component.props);
         this.children.push(<component.type
             children={component.props.children}
             style={component.props.style}
@@ -79,7 +78,6 @@ class PopupsContainer extends React.Component {
     }
 
     render() {
-        console.log("children:",this.children)
         return (
                 <div className={"react-awesome-popups-container"}>
                 {this.children}

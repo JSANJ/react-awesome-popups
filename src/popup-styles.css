@@ -3,6 +3,18 @@
     pointer-events: all;
     border: solid;
 }
+.react-awesome-popups[fadestate="start"] {
+    opacity: 0;
+}
+.react-awesome-popups[fadestate="fadingIn"] {
+    opacity: 1;
+}
+.react-awesome-popups[fadestate="hold"] {
+    opacity: 1;
+}
+.react-awesome-popups[fadestate="fadingOut"] {
+    opacity: 0;
+}
 
 .react-awesome-popups-success {
     border-color: #10DE0F;
@@ -10,7 +22,6 @@
     border-left-width: 3px;
     margin-right: 3px;
     background-color: #C6FDBE;
-
 }
 .react-awesome-popups-popup-content {
     text-align: left;
