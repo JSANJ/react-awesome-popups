@@ -12,68 +12,20 @@ const propTypes = {
     type: PropTypes.string
 }
 
-const fadeAnimStates = {
-    start: {
-        style: {
-            opacity: 0,
-        },
-        duration: 0, //How long this will stay in this state
-        nextStateKey: "in",
-    },
-    in: {
-        style: {
-            opacity: 1,
-        },
-        duration: 2000,
-        nextStateKey: "hold",
-    },
-    hold: {
-        style: {
-            opacity: 1,
-        },
-        duration: 12000,
-        nextStateKey: "out",
-    },
-    out: {
-        style: {
-            opacity: 0,
-        },
-        duration: 2000,
-        unmountOnComplete: true,
-    },
+const defaultProps = {
 }
 
-const clipAnimStates = {
-    start: {
-        style: {
-            clipPath: 'inset(0 100% 0 0)',
-        },
-        duration: 0,
-        nextStateKey: "in",
-    },
-    in: {
-        style: {
-            clipPath: 'inset(0 0 0 0)',
-        },
-        duration: 500,
-        nextStateKey: "hold",
-    },
-    hold: {
-        style: {
-            clipPath: 'inset(0 0 0 0)',
-        },
-        duration: 12000,
-        // nextStateKey: "out",
-    },
-    out: {
-        style: {
-            clipPath: 'inset(0 100% 0 0)',
-        },
-        duration: 500,
-        unmountOnComplete: true,
+//TODO get transition and set style
+function buildTransition(style,duration){
+    let s = "";
+    for (let i = 0; i < style.length; ++i) {
+        //TODO convert style[i] to dash-case
+        s += `${style[i]} ${duration}ms ease`
+        if (i < style.length-1){
+            s += ","
+        }
     }
-}
-const defaultProps = {
+    return s;
 }
 
 //TODO create BasePopupComponent
@@ -89,8 +41,8 @@ class Popup extends React.Component {
         //TODO set animStates from API (props)
 
         this.state = {
-            animStates: clipAnimStates,
-            animState: clipAnimStates["start"],
+            animStates: props.animStates,
+            animState: props.animStates["start"],
         }
 
         this.animThread = null;
@@ -98,11 +50,11 @@ class Popup extends React.Component {
         //TODO Set fade-in/fade-out animation
     }
     componentDidMount() {
-        this.queueState(this.state.animState, this.state.animStates);
+        this.queueState(this.state.animState);
     }
 
     //TODO fix animation transition durations
-    async queueState(newState, animStates){
+    async queueState(newState){
         console.log("new state:", newState);
         this.setState({animState: newState},()=>{
             const duration = newState.duration;
@@ -111,10 +63,10 @@ class Popup extends React.Component {
                 return;
             }
             if (newState.nextStateKey){
-                const nextState = animStates[newState.nextStateKey];
+                const nextState = this.state.animStates[newState.nextStateKey];
                 console.log("next state:",nextState);
                 this.animThread = setTimeout(()=>{
-                    this.queueState(nextState, animStates)
+                    this.queueState(nextState)
                 }, duration)
             }
         })
@@ -139,15 +91,16 @@ class Popup extends React.Component {
 
 
     render() {
+        const animState = this.state.animState;
         return (
             <div
                 className={
                     `react-awesome-popups react-awesome-popups-${this.props.type ? this.props.type : "custom"}`
                 }
                 style={{
-                    ...(this.state.animState ? {
-                        ...this.state.animState.style,
-                        transition: `all ${this.state.animState.duration}ms ease`,
+                    ...(animState ? {
+                        ...animState.style,
+                        transition: buildTransition(animState.style,animState.duration)
                     } : {}),
                     ...this.props.style
                 }}

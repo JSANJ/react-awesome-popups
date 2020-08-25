@@ -55,13 +55,13 @@ class PopupsContainer extends React.Component {
 
     }
 
-    popup(component, options){
+    popup(component, animStates){
         const id = makeid(20);
         this.children.push(<component.type
             children={component.props.children}
             style={component.props.style}
             type={component.props.type}
-            options={{...component.props.options, ...options}}
+            animStates={{...component.props.animStates,...animStates}}
             erasekey={id}
             key={id}
             unmountkey={this.unmountKey}

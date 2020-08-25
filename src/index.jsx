@@ -1,3 +1,4 @@
 import { Popup } from './Popup.jsx';
 import { PopupsContainer } from './PopupsContainer.jsx';
-export { Popup, PopupsContainer };
+import { PopupStates } from './PopupStates.jsx'
+export { Popup, PopupsContainer, PopupStates };
