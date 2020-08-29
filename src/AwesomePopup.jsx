@@ -49,7 +49,7 @@ class AwesomePopup extends React.Component {
         this.queueState(this.state.animState);
     }
 
-    async queueState(newState){
+    queueState(newState){
         this.setState({animState: newState},()=>{
             const duration = newState.duration;
             if (newState.unmountOnComplete){
@@ -72,7 +72,7 @@ class AwesomePopup extends React.Component {
         this.queueState(this.props.animStates['end'],this.props.animStates);
     }
 
-    async queueDelete(ms,key){
+    queueDelete(ms,key){
         setTimeout(
             ()=>{this.doDelete(key)},
             ms

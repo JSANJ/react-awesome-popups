@@ -1,16 +1,16 @@
 # React Awesome Popups
+> A lightweight, extendable, fast performing, highly customizeable, production ready React Component that renders an animated set of popups.
 
-[//]:<>([![Travis](https://img.shields.io/travis/justinsj/react-awesome-popups/master.svg)](https://travis-ci.org/justinsj/react-awesome-popups) ![NPM](https://img.shields.io/npm/v/react-awesome-popups.svg))
+![NPM](https://img.shields.io/npm/v/react-awesome-popups.svg)![npm](https://img.shields.io/npm/l/react-native-flip-card.svg)
 
-`react-awesome-popups` is a lightweight, extendable, fast performing, highly customizeable, production ready React Component that renders an animated set of popups.
 
 [<img width="400" alt="react-awesome-popups demo" src="https://github.com/JSANJ/react-awesome-popups/blob/master/demo/public/images/theme-set.gif?raw=true">](https://github.com/JSANJ/react-awesome-popups/blob/master/demo/public/images/theme-set.gif)
 
 ## Key Features
 
 - 60 FPS animated popups
-- Customizeable animated transitions
-- Customizeable colours
+- Customizable animated transitions
+- Customizable colours
 - OnPress ripple effect
 - Look and feel customisable and extendable in two ways: via **CSS custom properties** or **SASS** variables and lists ([scss config file](https://github.com/JSANJ/react-awesome-popups/blob/master/src/styles/default.scss)).
 - Use it with **CSSModules** or **Plain CSS**
@@ -23,13 +23,20 @@ Checkout the live demo with the `CSS customizer` at my <a title="React Awesome P
 
 You can run this demo locally on `3000` by:
 1. Cloning this repository
-	`git clone https://github.com/JSANJ/react-awesome-popups.git`
+
+    `git clone https://github.com/JSANJ/react-awesome-popups.git`
+
+2. Navigate to the demo directory
+   
+    `cd react-awesome-popups && cd demo`
 	
-2. Installing the dependencies **in the project directory**
-	`npm install`
+2. Installing the dependencies **in the demo directory**
+
+    `npm install --dev`
 	
 3. Starting the demo
-	`npm start`
+
+    `npm start`
 
 ## Installation
 
