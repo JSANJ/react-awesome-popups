@@ -24,9 +24,12 @@ Checkout the live demo with the `CSS customizer` at my <a title="React Awesome P
 You can run this demo locally on `3000` by:
 1. Cloning this repository
 	`git clone https://github.com/JSANJ/react-awesome-popups.git`
+
+2. Navigate to the demo directory
+    `cd react-awesome-popups && cd demo`
 	
-2. Installing the dependencies **in the project directory**
-	`npm install`
+2. Installing the dependencies **in the demo directory**
+	`npm install --dev`
 	
 3. Starting the demo
 	`npm start`
