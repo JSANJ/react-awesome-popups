@@ -1,6 +1,9 @@
 import React from 'react';
 import { AwesomePopup, AwesomePopupsContainer, AwesomePopupStates } from 'react-awesome-popups';
-import '@babel/polyfill';
+import logo from './logo.svg';
+import './App.css';
+import './css/popup.css';
+
 
 global.ReactAwesomePopups = React.createRef();
 function sleep(ms) {
@@ -8,22 +11,22 @@ function sleep(ms) {
 }
 
 async function doApiCall(){
-        const popupId = global.ReactAwesomePopups.current.popup(
-            <AwesomePopup
-                type={"success"}
-                style={{width: 150}}
-                closeButton={<div>X</div>}
-                animStates={AwesomePopupStates.clip}
-            >
-                Connected!
-            </AwesomePopup>
-        )
+    const popupId = global.ReactAwesomePopups.current.popup(
+        <AwesomePopup
+            type={"success"}
+            style={{width: 150}}
+            closeButton={<div>X</div>}
+            animStates={AwesomePopupStates.clip}
+        >
+            Connected!
+        </AwesomePopup>
+    )
 
-        await sleep(1000); // Wait for 1000ms to simulate API call
+    await sleep(1500); // Wait for 1500ms
 
-        global.ReactAwesomePopups.current.close(popupId);
-
+    global.ReactAwesomePopups.current.close(popupId);
 }
+
 class App extends React.Component {
     constructor(props){
         super(props)
@@ -82,10 +85,13 @@ class App extends React.Component {
                 >
                     <AwesomePopupsContainer ref={global.ReactAwesomePopups}>
                         <AwesomePopup type={"success"} style={{width: 150}}
-                               animStates={AwesomePopupStates.clip}
+                                      animStates={AwesomePopupStates.clip}
                         >
                             Test
                         </AwesomePopup>
+                        {/*<Popup type={"success"} style={{width: 150}}>*/}
+                        {/*    Test1*/}
+                        {/*</Popup>*/}
                     </AwesomePopupsContainer>
                 </div>
 
