@@ -62,9 +62,9 @@ const clipAnimStates = {
     }
 }
 
-const PopupStates = {
+const AwesomePopupStates = {
     fade: fadeAnimStates,
     clip: clipAnimStates
 }
 
-export { PopupStates };
+export { AwesomePopupStates };

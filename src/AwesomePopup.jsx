@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './popup-styles.css';
+import './awesome-popup-styles.css';
 import CloseButton from './assets/close.svg';
 
 const propTypes = {
@@ -15,68 +15,61 @@ const propTypes = {
 const defaultProps = {
 }
 
-//TODO get transition and set style
 function buildTransition(style,duration){
     let s = "";
-    for (let i = 0; i < style.length; ++i) {
-        //TODO convert style[i] to dash-case
-        s += `${style[i]} ${duration}ms ease`
+    let i = 0;
+    for (const key in style) {
+        const styleKey = key.replace(/([a-zA-Z])(?=[A-Z])/g, '$1-').toLowerCase()
+        s += `${styleKey} ${duration}ms ease`
         if (i < style.length-1){
             s += ","
         }
+        i += 1;
     }
     return s;
 }
 
 //TODO create BasePopupComponent
 //TODO add close button
-class Popup extends React.Component {
+class AwesomePopup extends React.Component {
     constructor(props) {
         super(props);
 
         this.queueDelete = this.queueDelete.bind(this);
-        this.startDelete = this.startDelete.bind(this);
+        this.startUnmount = this.startUnmount.bind(this);
         this.doDelete = this.doDelete.bind(this);
 
-        //TODO set animStates from API (props)
-
         this.state = {
-            animStates: props.animStates,
             animState: props.animStates["start"],
         }
 
         this.animThread = null;
-
-        //TODO Set fade-in/fade-out animation
     }
     componentDidMount() {
         this.queueState(this.state.animState);
     }
 
-    //TODO fix animation transition durations
     async queueState(newState){
-        console.log("new state:", newState);
         this.setState({animState: newState},()=>{
             const duration = newState.duration;
             if (newState.unmountOnComplete){
-                this.queueDelete(duration, this.props.erasekey)
+                this.queueDelete(duration, this.props.popupId)
                 return;
             }
             if (newState.nextStateKey){
-                const nextState = this.state.animStates[newState.nextStateKey];
-                console.log("next state:",nextState);
+                const nextState = this.props.animStates[newState.nextStateKey];
                 this.animThread = setTimeout(()=>{
                     this.queueState(nextState)
                 }, duration)
             }
         })
     }
-    startDelete(){
+    startUnmount(){
         if (this.animThread){
             //Cancel current anim
             clearTimeout(this.animThread);
         }
-        this.queueState(this.state.animStates["out"],this.state.animStates);
+        this.queueState(this.props.animStates["out"],this.props.animStates);
     }
 
     async queueDelete(ms,key){
@@ -117,7 +110,7 @@ class Popup extends React.Component {
                                 className={`react-awesome-popups-close-button react-awesome-popups-close-button-${this.props.type ? this.props.type : "custom"}`}
                                 // src={CloseButton}
                                 alt="Close Button"
-                                onClick={()=>{this.startDelete()}}
+                                onClick={()=>{this.startUnmount()}}
                             />
                     }
                 </div>
@@ -126,10 +119,10 @@ class Popup extends React.Component {
     }
 }
 
-Popup.propTypes = propTypes;
-Popup.defaultProps = defaultProps;
+AwesomePopup.propTypes = propTypes;
+AwesomePopup.defaultProps = defaultProps;
 
 //Close icon from https://www.flaticon.com/authors/hirschwolf
 
 
-export { Popup };
+export { AwesomePopup };

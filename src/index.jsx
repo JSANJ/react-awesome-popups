@@ -1,4 +1,4 @@
-import { Popup } from './Popup.jsx';
-import { PopupsContainer } from './PopupsContainer.jsx';
-import { PopupStates } from './PopupStates.jsx'
-export { Popup, PopupsContainer, PopupStates };
+import { AwesomePopup } from './AwesomePopup.jsx';
+import { AwesomePopupsContainer } from './AwesomePopupsContainer.jsx';
+import { AwesomePopupStates } from './AwesomePopupStates.jsx'
+export { AwesomePopup, AwesomePopupsContainer, AwesomePopupStates };
