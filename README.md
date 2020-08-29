@@ -9,8 +9,8 @@
 ## Key Features
 
 - 60 FPS animated popups
-- Customizeable animated transitions
-- Customizeable colours
+- Customizable animated transitions
+- Customizable colours
 - OnPress ripple effect
 - Look and feel customisable and extendable in two ways: via **CSS custom properties** or **SASS** variables and lists ([scss config file](https://github.com/JSANJ/react-awesome-popups/blob/master/src/styles/default.scss)).
 - Use it with **CSSModules** or **Plain CSS**
