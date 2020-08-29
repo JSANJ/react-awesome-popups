@@ -8,9 +8,10 @@
         "start": "webpack-dev-server --open"
     },
     "dependencies": {
+        "@babel/polyfill": "^7.10.4",
         "prop-types": "^15.6.0",
         "react": "^16.0.0",
-        "react-awesome-popups": "^0.0.8",
+        "react-awesome-popups": "^0.0.9",
         "react-dom": "^16.0.0"
     },
     "devDependencies": {

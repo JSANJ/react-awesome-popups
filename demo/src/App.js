@@ -1,8 +1,6 @@
 import React from 'react';
 import { AwesomePopup, AwesomePopupsContainer, AwesomePopupStates } from 'react-awesome-popups';
-import './App.css';
-import './css/popup.css';
-
+import '@babel/polyfill';
 
 global.ReactAwesomePopups = React.createRef();
 function sleep(ms) {

@@ -1,6 +1,6 @@
 {
     "name": "react-awesome-popups",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "Get easily configurable, pleasing popups on your React App.",
     "repository": {
         "type": "git",
@@ -49,5 +49,7 @@
         "webpack": "^4.42.0",
         "webpack-cli": "^3.2.1"
     },
-    "dependencies": {}
+    "dependencies": {
+        "@babel/polyfill": "^7.10.4"
+    }
 }
