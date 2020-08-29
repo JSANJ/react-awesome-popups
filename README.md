@@ -1,8 +1,8 @@
 # React Awesome Popups
+> A lightweight, extendable, fast performing, highly customizeable, production ready React Component that renders an animated set of popups.
 
-[//]:<>([![Travis](https://img.shields.io/travis/justinsj/react-awesome-popups/master.svg)](https://travis-ci.org/justinsj/react-awesome-popups) ![NPM](https://img.shields.io/npm/v/react-awesome-popups.svg))
+![NPM](https://img.shields.io/npm/v/react-awesome-popups.svg)![npm](https://img.shields.io/npm/l/react-native-flip-card.svg)
 
-`react-awesome-popups` is a lightweight, extendable, fast performing, highly customizeable, production ready React Component that renders an animated set of popups.
 
 [<img width="400" alt="react-awesome-popups demo" src="https://github.com/JSANJ/react-awesome-popups/blob/master/demo/public/images/theme-set.gif?raw=true">](https://github.com/JSANJ/react-awesome-popups/blob/master/demo/public/images/theme-set.gif)
 
