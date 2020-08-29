@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import './awesome-popups-container-style.css';
 import {AwesomePopup} from "./AwesomePopup.jsx";
 
+const ID_LENGTH = 20;
+
 //TODO
 const propTypes = {
     label: PropTypes.string.isRequired,
@@ -18,7 +20,6 @@ const defaultProps = {
             color: 'green'
         },
         input: {
-            background: '#ddd',
             border: '1px solid red'
         }
     }
@@ -39,13 +40,13 @@ class AwesomePopupsContainer extends React.Component {
     constructor(props) {
         super(props);
         this.popup = this.popup.bind(this);
-        this._unmountKey = this._unmountKey.bind(this);
-        this.children = [];                         // 0 items
+        this.remove = this.remove.bind(this);
+        this.children = [];                         // 0 items - props.children is empty
         if (props.children !== undefined) {
-            if (props.children.type !== [].type){   // 1 item
+            if (props.children.type !== [].type){   // 1 item - props.children is an object
                 this.popup(props.children)
             }
-            else {                                  // 2+ items
+            else {                                  // 2+ items - props.children is an array
                 this.children = [];
                 for (let i = 0; i< props.children.length; ++i){
                     this.popup(props.children[i])
@@ -54,8 +55,14 @@ class AwesomePopupsContainer extends React.Component {
         }
     }
 
-    popup(component, animStates){
-        const id = makeid(20);
+    /**
+     * Adds a popup to the container. Also starts the animation.
+     * @param {AwesomePopup} component - popup to be added
+     * @param {object} animStates - override object for the animations
+     * @returns {string} popupId - ID generated to identify the popup
+     */
+    popup(component, animStates = null){
+        const id = makeid(ID_LENGTH);
         const ref = React.createRef();
         this.children.push({
             component: <component.type
@@ -76,10 +83,23 @@ class AwesomePopupsContainer extends React.Component {
     }
 
     /**
+     * Replace the popup with the given replaceId
+     * @param {AwesomePopup} component - popup to be added
+     * @param {object} animStates - override object for the animations
+     * @param {string} replaceId - ID of the popup to be replaced
+     */
+    replace(component, animStates, replaceId){
+        //TODO
+        const id = makeid(ID_LENGTH);
+
+        return id
+    }
+
+    /**
      * Perform the close animation and remove popup elegantly
+     * @param {string} popupId - ID of the popup to be closed
      */
     close(popupId){
-        console.log("closing:",popupId);
         const popup = this.children.find((item,i)=>{
             return popupId === item.component.props.popupId;
         })
@@ -95,6 +115,7 @@ class AwesomePopupsContainer extends React.Component {
 
     /**
      * Immediately remove popup
+     * @param {string} popupId - ID of the popup to be removed
      */
     remove(popupId){
         this.children = this.children.filter((item,i) => {

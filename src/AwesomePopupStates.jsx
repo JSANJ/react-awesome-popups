@@ -11,17 +11,17 @@ const fadeAnimStates = {
             opacity: 1,
         },
         duration: 2000,
-        nextStateKey: "hold",
+        nextStateKey: "wait",
     },
-    hold: {
+    wait: {
         style: {
             opacity: 1,
             height: '100%',
         },
         duration: 8000,
-        nextStateKey: "out",
+        nextStateKey: "end",
     },
-    out: {
+    end: {
         style: {
             opacity: 0,
             height: '0%',
@@ -44,16 +44,16 @@ const clipAnimStates = {
             clipPath: 'inset(0 0 0 0)',
         },
         duration: 500,
-        nextStateKey: "hold",
+        nextStateKey: "wait",
     },
-    hold: {
+    wait: {
         style: {
             clipPath: 'inset(0 0 0 0)',
         },
         duration: 8000,
-        nextStateKey: "out",
+        nextStateKey: "end",
     },
-    out: {
+    end: {
         style: {
             clipPath: 'inset(0 100% 0 0)',
         },

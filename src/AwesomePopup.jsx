@@ -69,7 +69,7 @@ class AwesomePopup extends React.Component {
             //Cancel current anim
             clearTimeout(this.animThread);
         }
-        this.queueState(this.props.animStates["out"],this.props.animStates);
+        this.queueState(this.props.animStates['end'],this.props.animStates);
     }
 
     async queueDelete(ms,key){

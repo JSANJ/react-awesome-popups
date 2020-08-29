@@ -28,5 +28,8 @@ module.exports = {
                 use: ['@svgr/webpack'],
             }
         ]
-    }
+    },
+    optimization: {
+        minimize: false
+    },
 }

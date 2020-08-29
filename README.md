@@ -43,7 +43,7 @@ npm install --save react-awesome-poups
 **AwesomePopupsContainer.popup(component, animStates)**
 Adds the popup component and starts the animation using the animStates **start** key.
 - component: (AwesomePopup) - popup component to be displayed
-- animStates: ({string: AnimState} object) - **start** and **out** keys are required.
+- animStates: ({string: AnimState} object) - **start** and **end** keys are required.
 
 **returns**: popupId (string) 
 
