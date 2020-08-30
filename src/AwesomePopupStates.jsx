@@ -3,15 +3,15 @@ const fadeAnimStates = {
         style: {
             opacity: 0,
         },
-        duration: 0, //How long this will stay in this state
-        nextStateKey: "in",
+        duration: 0, // How long this will stay in this state
+        nextStateKey: 'in',
     },
     in: {
         style: {
             opacity: 1,
         },
         duration: 2000,
-        nextStateKey: "wait",
+        nextStateKey: 'wait',
     },
     wait: {
         style: {
@@ -19,7 +19,7 @@ const fadeAnimStates = {
             height: '100%',
         },
         duration: 8000,
-        nextStateKey: "end",
+        nextStateKey: 'end',
     },
     end: {
         style: {
@@ -29,7 +29,7 @@ const fadeAnimStates = {
         duration: 2000,
         unmountOnComplete: true,
     },
-}
+};
 
 const clipAnimStates = {
     start: {
@@ -37,21 +37,21 @@ const clipAnimStates = {
             clipPath: 'inset(0 100% 0 0)',
         },
         duration: 0,
-        nextStateKey: "in",
+        nextStateKey: 'in',
     },
     in: {
         style: {
             clipPath: 'inset(0 0 0 0)',
         },
         duration: 500,
-        nextStateKey: "wait",
+        nextStateKey: 'wait',
     },
     wait: {
         style: {
             clipPath: 'inset(0 0 0 0)',
         },
         duration: 8000,
-        nextStateKey: "end",
+        nextStateKey: 'end',
     },
     end: {
         style: {
@@ -59,12 +59,12 @@ const clipAnimStates = {
         },
         duration: 500,
         unmountOnComplete: true,
-    }
-}
+    },
+};
 
 const AwesomePopupStates = {
     fade: fadeAnimStates,
-    clip: clipAnimStates
-}
+    clip: clipAnimStates,
+};
 
-export { AwesomePopupStates };
+export {AwesomePopupStates};

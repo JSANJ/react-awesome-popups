@@ -7,7 +7,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "react": "^16.13.1",
-    "react-awesome-popups": "0.0.9",
+    "react-awesome-popups": "0.0.12",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3"
   },
@@ -31,5 +31,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "typescript": "^4.0.2"
   }
 }

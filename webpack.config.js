@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
     mode: 'production',
@@ -6,30 +6,30 @@ module.exports = {
     output: {
         path: path.resolve('lib'),
         filename: 'ReactAwesomePopups.js',
-        libraryTarget: 'commonjs2'
+        libraryTarget: 'commonjs2',
     },
     module: {
         rules: [
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
-                use: 'babel-loader'
+                use: ['babel-loader', 'eslint-loader'],
             },
             {
                 test: /\.css$/i,
-                use: ['style-loader','css-loader'],
+                use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf)(\?[a-z0-9=.]+)?$/,
-                loader: 'url-loader?limit=100000'
+                loader: 'url-loader?limit=100000',
             },
             {
                 test: /\.svg$/,
                 use: ['@svgr/webpack'],
-            }
-        ]
+            },
+        ],
     },
     optimization: {
-        minimize: false
+        minimize: false,
     },
-}
+};

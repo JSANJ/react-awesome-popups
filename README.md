@@ -77,20 +77,49 @@ Removes the popup with the given popupId immediately.
 
 #### `AwesomePopupsContainer` props
 
-(Documentation In Progress)
+| Attribute 		|    Type    |  Default  | Description                                                                                              |
+| :-------- 		| :--------: | :-------: | :------------------------------------------------------------------------------------------------------- |
+| children          | `any`      |  `null`   | The component's children to be rendered                                                                  |
 
 ### `AwesomePopup`
-#### `AwesomePopup` API
+#### `AwesomePopup` API (Internal)
 
-(Documentation In Progress)
+**AwesomePopup.queueState(newState)**
+Updates the animation state and queues the next state.
+- newState: (AnimState) - an object containing the style, duration, and other animation parameters
+
+**AwesomePopup.startUnmount()**
+Begins the unmounting of the component by starting the **end** animation state.
+
+**AwesomePopup.queueDelete(ms, popupId)**
+Queues the unmounting of the component after a given delay in milliseconds.
+- ms: (number) - delay in milliseconds
+- popupId: (string) - ID of the popup to be sent to the container for unmounting
+
+**AwesomePopup.doDelete(popupId)**
+Calls the onUnmount function of the popup. Also triggers the onEndComplete callback
+- popupId: (string) - ID of the popup to be sent to the container for unmounting
 
 #### `AwesomePopup` props
 
-(Documentation In Progress)
+| Attribute 		|    Type    |  Default  | Description                                                                                              |
+| :-------- 		| :--------: | :-------: | :------------------------------------------------------------------------------------------------------- |
+| onClick     		| `function` |  `null`   | Triggered when the component is clicked                                                                  |
+| onStart     		| `function` |  `null`   | Triggered when the component is mounted                                                                  |
+| onStartComplete	| `function` |  `null`	 | Triggered when the component reaches its 'wait' animation                                                |
+| onEnd 		    | `function` |  `null`   | Triggered when the component is beginning its removal                                                    |
+| onEndComplete     | `function` |  `null`   | Triggered when the component is just about to be unmounted                                               |
+| popupId           | `string`   |`generated`| This is a key added to the popup when inserted into the AwesomePopupsContainer                           |
+| closeButton       | `component`|  `auto`   | An object placed at the end of the container to trigger closing the popup when pressed                   |
+| style             | `object`   |  `null`   | An object to add as the React css style of the component                                                 |
+| type              | `string`   |  `custom` | ( success | warning | error | info ) Substring of the css style to be applied to the component           |
+| animStates        | `object`   |  `null`   | {string:AnimState} key-value object for animating the component                                          |
+| children          | `any`      |  `null`   | The component's children to be rendered                                                                  |
 
 ### `AwesomePopupStates`
-
-(Documentation In Progress)
+This is a {string:AnimStates} key-value object. Each 'AnimStates' is then a {string:AnimState} object 
+**clip**: An AnimStates object for a default clipping animation
+**fade**: An AnimStates object for a default fade animation
 
 ### `ReactAwesomePopups` basic example
 
@@ -138,7 +167,13 @@ class YourAwesomePopup extends AwesomePopup {
 }
 
 ```
+## Developer Installation
 
+Establish git hooks link
+Navigate to **project directory** and run:
+```
+git config --local core.hooksPath git_hooks
+```
 ### Future Work
 
 ## React Native Version

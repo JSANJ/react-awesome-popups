@@ -11,14 +11,15 @@ function sleep(ms) {
 }
 
 async function doApiCall(){
+    let overrideAnimState = AwesomePopupStates.clip
+    overrideAnimState.wait.duration = -1;
     const popupId = global.ReactAwesomePopups.current.popup(
         <AwesomePopup
             type={"success"}
             style={{width: 150}}
-            closeButton={<div>X</div>}
-            animStates={AwesomePopupStates.clip}
+            animStates={overrideAnimState}
         >
-            Connected!
+            Connected!!
         </AwesomePopup>
     )
 
@@ -27,6 +28,34 @@ async function doApiCall(){
     global.ReactAwesomePopups.current.close(popupId);
 }
 
+function remove(){
+    console.log("THIS:",this);
+    this.remove(this.props.popupId);
+}
+
+function onAccept(){
+    console.log("Accepted");
+}
+function addOptionsPopup(){
+    let overrideAnimState = AwesomePopupStates.clip
+    overrideAnimState.wait.duration = -1;
+    const popupId = global.ReactAwesomePopups.current.popup(
+        <AwesomePopup
+            type={"success"}
+            style={{width: 150}}
+            animStates={overrideAnimState}
+        >
+            <div>
+                <button onClick={onAccept}>
+                    Accept
+                </button>
+                <button onClick={remove}>
+                    Remove
+                </button>
+            </div>
+        </AwesomePopup>
+    )
+}
 class App extends React.Component {
     constructor(props){
         super(props)
@@ -73,6 +102,9 @@ class App extends React.Component {
                 <button onClick={doApiCall}>
                     Popup!
                 </button>
+                {/*<button onClick={addOptionsPopup}>*/}
+                {/*    Popup!*/}
+                {/*</button>*/}
                 <div
                     style={{
                         display: 'flex',

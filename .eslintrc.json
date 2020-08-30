@@ -1,0 +1,49 @@
+{
+    "parser": "babel-eslint",
+	"env": {
+        "browser": true,
+        "es2020": true,
+		"browser": true,
+		"amd": true,
+		"node": true
+    },
+    "extends": [
+		"eslint:recommended",
+        "plugin:react/recommended",
+        "google"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+			"experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+	"globals": {
+		"global": "writable"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+		"react/no-deprecated": "off",
+        "indent": ["error", 4]
+    },
+	"settings": {
+		"react": {
+			"version": "16.11.0"
+		}
+	},
+	"overrides": [
+    {
+      "files": [
+        "**/*.test.js",
+        "**/*.test.jsx"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}
