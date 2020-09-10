@@ -4,7 +4,7 @@
 ![NPM](https://img.shields.io/npm/v/react-awesome-popups.svg)![npm](https://img.shields.io/npm/l/react-native-flip-card.svg)
 
 
-[<img width="400" alt="react-awesome-popups demo" src="https://github.com/JSANJ/react-awesome-popups/blob/master/demo/public/images/theme-set.gif?raw=true">](https://github.com/JSANJ/react-awesome-popups/blob/master/demo/public/images/theme-set.gif)
+[<img width="798" alt="react-awesome-popups demo" src="https://github.com/JSANJ/react-awesome-popups/blob/master/demo/public/demo.gif">](https://github.com/JSANJ/react-awesome-popups/blob/master/demo/public/demo.gif)
 
 ## Key Features
 
@@ -112,7 +112,7 @@ Calls the onUnmount function of the popup. Also triggers the onEndComplete callb
 | popupId           | `string`   |`generated`| This is a key added to the popup when inserted into the AwesomePopupsContainer                           |
 | closeButton       | `component`|  `auto`   | An object placed at the end of the container to trigger closing the popup when pressed                   |
 | style             | `object`   |  `null`   | An object to add as the React css style of the component                                                 |
-| type              | `string`   |  `custom` | ( success | warning | error | info ) Substring of the css style to be applied to the component           |
+| type              | `string`   |  `custom` | ( success | warning | error | info | neutral ) Substring of the css style to be applied to the component |
 | animStates        | `object`   |  `null`   | {string:AnimState} key-value object for animating the component                                          |
 | children          | `any`      |  `null`   | The component's children to be rendered                                                                  |
 

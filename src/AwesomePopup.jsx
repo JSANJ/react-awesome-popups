@@ -10,12 +10,13 @@ const propTypes = {
     style: PropTypes.object,
     children: PropTypes.any,
     type: PropTypes.string,
+    initialKey: PropTypes.string,
     animStates: PropTypes.object,
-    onStart: PropTypes.function,
-    onStartComplete: PropTypes.function,
-    onEnd: PropTypes.function,
-    onEndComplete: PropTypes.function,
-    onClick: PropTypes.function,
+    onStart: PropTypes.func,
+    onStartComplete: PropTypes.func,
+    onEnd: PropTypes.func,
+    onEndComplete: PropTypes.func,
+    onClick: PropTypes.func,
 };
 
 const defaultProps = {
@@ -68,7 +69,9 @@ class AwesomePopup extends React.Component {
         this.doDelete = this.doDelete.bind(this);
 
         this.state = {
-            animState: props.animStates['start'],
+            animState: props.initialKey ?
+                props.animStates[props.initialKey] :
+                props.animStates['start'],
         };
 
         this.animThread = null;
@@ -191,7 +194,7 @@ class AwesomePopup extends React.Component {
 
                     </div>
                     {
-                        this.props.closeButton ?
+                        this.props.closeButton !== undefined ?
                             this.props.closeButton :
                             <CloseButton
                                 className={`
