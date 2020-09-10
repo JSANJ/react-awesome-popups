@@ -2,28 +2,20 @@
     display: table;
     pointer-events: all;
     border: solid;
-}
-.react-awesome-popups-success {
-    border-color: #10DE0F;
     border-width: 0;
     border-left-width: 3px;
     margin-right: 3px;
-    background-color: #C6FDBE;
 }
 .react-awesome-popups-popup-content {
-    padding: 0.5em;
+    padding: 0.5em 0.5em 0.5em 0.75em;
     text-align: left;
-}
-.react-awesome-popups-popup-content-success {
-    color: #04B403;
-
+    width: 100%;
 }
 .react-awesome-popups-popup-inner-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /*padding: 0.5em;*/
 }
 .react-awesome-popups-close-button {
     cursor: pointer;
@@ -31,8 +23,15 @@
     height: auto;
     max-height: 0.8em;
     min-width: 0.8em;
-    /*margin-left:0.5em;*/
     padding:0.5em;
+}
+.react-awesome-popups-success {
+     border-color: #10DE0F;
+     background-color: #C6FDBE;
+ }
+.react-awesome-popups-popup-content-success {
+    color: #04B403;
+
 }
 .react-awesome-popups-close-button-success {
     fill: #04B403;
@@ -40,4 +39,165 @@
 .react-awesome-popups-close-button-success:hover {
     transform: rotate(360deg);
     transition: transform 0.5s ease-in-out;
+}
+.react-awesome-popups-popup-content-success .MuiButton-root:hover {
+    background-color: #a5f6a5;
+}
+.react-awesome-popups-popup-content-success .MuiTouchRipple-rippleVisible {
+    color: rgba(4,180,3,0.5);
+}
+
+.react-awesome-popups-popup-content-success .MuiButton-label {
+    color: #04B403;
+}
+
+.react-awesome-popups-neutral {
+    border-color: #C0C1C1;
+    background-color: #EBEBEB;
+}
+.react-awesome-popups-popup-content-neutral {
+    color: #A4A4A4;
+
+}
+.react-awesome-popups-close-button-neutral {
+    fill: #A4A4A4;
+}
+.react-awesome-popups-close-button-neutral:hover {
+    /*transform: rotate(360deg);*/
+    /*transition: transform 0.5s ease-in-out;*/
+}
+.react-awesome-popups-popup-content-neutral .MuiButton-root:hover {
+    background-color: #f2f2f2;
+}
+.react-awesome-popups-popup-content-neutral .MuiTouchRipple-rippleVisible {
+    color: rgba(180, 180, 180, 0.5);
+}
+
+.react-awesome-popups-popup-content-neutral .MuiButton-label {
+    color: #A4A4A4;
+}
+
+.react-awesome-popups-info {
+    border-color: #1BC8C8;
+    background-color: #9CFEFE;
+}
+.react-awesome-popups-popup-content-info {
+    color: #00A6A6;
+
+}
+.react-awesome-popups-close-button-info {
+    fill: #00A6A6;
+}
+.react-awesome-popups-close-button-info:hover {
+
+}
+.react-awesome-popups-popup-content-info .MuiButton-root:hover {
+    background-color: #a1f6f4;
+}
+.react-awesome-popups-popup-content-info .MuiTouchRipple-rippleVisible {
+    color: rgba(0, 178, 180, 0.5);
+}
+
+.react-awesome-popups-popup-content-info .MuiButton-label {
+    color: #00A6A6;
+}
+
+.react-awesome-popups-warning {
+    border-color: #DBA935;
+    background-color: #FAE9B9;
+}
+.react-awesome-popups-popup-content-warning {
+    color: #BB952C;
+
+}
+.react-awesome-popups-close-button-warning {
+    fill: #BB952C;
+}
+.react-awesome-popups-close-button-warning:hover {
+
+}
+.react-awesome-popups-popup-content-warning .MuiButton-root:hover {
+    background-color: #f6dd97;
+}
+.react-awesome-popups-popup-content-warning .MuiTouchRipple-rippleVisible {
+    color: rgba(180, 137, 1, 0.5);
+}
+
+.react-awesome-popups-popup-content-warning .MuiButton-label {
+    color: #BB952C;
+}
+
+.react-awesome-popups-error {
+    border-color: #F13636;
+    background-color: #FFAAAA;
+}
+.react-awesome-popups-popup-content-error {
+    color: #B41515
+
+}
+.react-awesome-popups-close-button-error {
+    fill: #B41515;
+}
+.react-awesome-popups-close-button-error:hover {
+
+}
+.react-awesome-popups-popup-content-error .MuiButton-root:hover {
+    background-color: #f69a93;
+}
+.react-awesome-popups-popup-content-error .MuiTouchRipple-rippleVisible {
+    color: rgba(180, 0, 0, 0.5);
+}
+
+.react-awesome-popups-popup-content-error .MuiButton-label {
+    color: #B41515;
+}
+
+.react-awesome-popups-pink {
+    border-color: #DB357C;
+    background-color: #FAB9D1;
+}
+.react-awesome-popups-popup-content-pink {
+    color: #C20060
+
+}
+.react-awesome-popups-close-button-pink {
+    fill: #C20060;
+}
+.react-awesome-popups-close-button-pink:hover {
+
+}
+.react-awesome-popups-popup-content-pink .MuiButton-root:hover {
+    background-color: #f697c1;
+}
+.react-awesome-popups-popup-content-pink .MuiTouchRipple-rippleVisible {
+    color: rgba(180, 0, 100, 0.5);
+}
+
+.react-awesome-popups-popup-content-pink .MuiButton-label {
+    color: #C20060;
+}
+
+.react-awesome-popups-purple {
+    border-color: #D535DB;
+    background-color: #EBB9FA;
+}
+.react-awesome-popups-popup-content-purple {
+    color: #822CBB
+
+}
+.react-awesome-popups-close-button-purple {
+    fill: #822CBB;
+}
+.react-awesome-popups-close-button-purple:hover {
+
+}
+.react-awesome-popups-popup-content-purple .MuiButton-root:hover {
+    background-color: #cc8ef6;
+}
+.react-awesome-popups-popup-content-purple .MuiTouchRipple-rippleVisible {
+    color: rgba(111, 0, 180, 0.5);
+}
+
+.react-awesome-popups-popup-content-purple .MuiButton-label {
+    color: #822CBB;
 }

@@ -1,34 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './awesome-popups-container-style.css';
+import {AwesomeHelpers} from './AwesomeHelpers.jsx';
 
 const ID_LENGTH = 20;
 
 const propTypes = {
     children: PropTypes.any,
+    style: PropTypes.object,
 };
 
 const defaultProps = {
 
 };
 
-/**
- * Creates a random ID of a given length
- * @param {number} length
- * @return {string}
- */
-function makeid(length) {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
-        'abcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    for ( let i = 0; i < length; i++ ) {
-        result += characters.charAt(
-            Math.floor(Math.random() * charactersLength),
-        );
-    }
-    return result;
-}
 
 /**
  * A container to manage the insertion and removal of popups
@@ -60,32 +45,46 @@ class AwesomePopupsContainer extends React.Component {
      * Adds a popup to the container. Also starts the animation.
      * @param {AwesomePopup} component - popup to be added
      * @param {object} animStates - override object for the animations
+     * @param {number} forceIndex - override the position of the popup
+     * @param {string} initialKey - the key of the AnimState to start with
      * @return {string} popupId - ID generated to identify the popup
      */
-    popup(component, animStates = null) {
-        const id = makeid(ID_LENGTH);
+    popup(component, animStates = null, forceIndex = null, initialKey = null) {
+        const id = component.props.popupId ?
+            component.props.popupId :
+            AwesomeHelpers.awesomeId(ID_LENGTH);
         const ref = React.createRef();
 
-        this.children.push({
-            component: <component.type
-                style={component.props.style}
-                type={component.props.type}
-                animStates={{...component.props.animStates, ...animStates}}
-                popupId={id}
-                key={id}
-                ref={ref}
-                closeButton={component.props.closeButton}
-                onUnmount={this.remove}
-                onClick={component.props.onClick}
-                onStart={component.props.onStart}
-                onStartComplete={component.props.onStartComplete}
-                onEnd={component.props.onEnd}
-                onEndComplete={component.props.onEndComplete}
-            >
-                {component.props.children}
-            </component.type>,
-            ref: ref,
-        });
+        const newComponent = <component.type
+            style={component.props.style}
+            type={component.props.type}
+            animStates={{...component.props.animStates, ...animStates}}
+            initialKey={initialKey}
+            popupId={id}
+            key={id}
+            ref={ref}
+            closeButton={component.props.closeButton}
+            onUnmount={this.remove}
+            onClick={component.props.onClick}
+            onStart={component.props.onStart}
+            onStartComplete={component.props.onStartComplete}
+            onEnd={component.props.onEnd}
+            onEndComplete={component.props.onEndComplete}
+        >
+            {component.props.children}
+        </component.type>;
+        if (forceIndex != null) {
+            this.children[forceIndex] = {
+                component: newComponent,
+                ref: ref,
+            };
+        } else {
+            this.children.push({
+                component: newComponent,
+                ref: ref,
+            });
+        }
+
 
         this.forceUpdate();
         return id;
@@ -96,12 +95,20 @@ class AwesomePopupsContainer extends React.Component {
      * @param {AwesomePopup} component - popup to be added
      * @param {object} animStates - override object for the animations
      * @param {string} replaceId - ID of the popup to be replaced
+     * @param {string} initialKey - the key of the AnimState to start with
      * @return {string} popupId - ID generated to identify the popup
      */
-    replace(component, animStates, replaceId) {
+    replace(component, animStates, replaceId, initialKey = null) {
         // TODO
-        const id = makeid(ID_LENGTH);
+        const id = component.props.popupId ?
+            component.props.popupId :
+            AwesomeHelpers.awesomeId(ID_LENGTH);
 
+        const index = this.children.findIndex((item)=>{
+            return replaceId === item.component.props.popupId;
+        });
+
+        this.popup(component, animStates, index, initialKey);
         return id;
     }
 
@@ -110,7 +117,7 @@ class AwesomePopupsContainer extends React.Component {
      * @param {string} popupId - ID of the popup to be closed
      */
     close(popupId) {
-        const popup = this.children.find((item, i)=>{
+        const popup = this.children.find((item)=>{
             return popupId === item.component.props.popupId;
         });
 
@@ -138,7 +145,10 @@ class AwesomePopupsContainer extends React.Component {
      */
     render() {
         return (
-            <div className={'react-awesome-popups-container'}>
+            <div
+                className={'react-awesome-popups-container'}
+                style={this.props.style}
+            >
                 {this.children.map((item, i)=>{
                     return item.component;
                 })}
